@@ -14,7 +14,7 @@ At this session, we'll discuss:
 
 Anaconda, a standalone platform to develop all code necessary for the workshop
 D3.js, and the kinds of graphics it can produce
-A Line Chart example to help with getting started on developing further concepts
+A simple scatterplot example to help with getting started on developing further concepts
 For this workshop, please download Anaconda (specifically the version for Python 2.7) on your personal laptop. (https://www.anaconda.com/download/). Please bring your laptop to the workshop!
 
-Attendees are not expected to have prior coding experience with JavaScript or D3.js. We'll use open-source and free software tools that are easy to install and will let you run all code without external applications or compiling.
+Attendees are expected to have very minimal prior coding experience with JavaScript or D3.js. We'll use open-source and free software tools that are easy to install and will let you run all code without external applications or compiling.
