@@ -4,7 +4,7 @@ ICS Data Visualization Workshop: Exploring Computational Essays
 
 Link to presentation:
 
-xxx
+https://docs.google.com/presentation/d/1nDvR8k2zaEUspDPoeXpDo4ZulPO1LXDW1NmCw6lUZRM/edit?usp=sharing
 
 Link to observable notebook:
 
