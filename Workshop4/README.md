@@ -7,6 +7,7 @@ Link to presentation:
 xxx
 
 Link to observable notebook:
+
 https://beta.observablehq.com/@dudaspm/openvis-2018-exercises
 
 Computational Essays are a relatively new approach to both showcasing research and creating pedagogical resources for learners. They merge plain text, interactive inputs, and dynamic outputs to help simplify complex subject matter.
