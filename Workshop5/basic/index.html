@@ -1,0 +1,79 @@
+<!doctype html> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Project</title>	
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		
+		<script>
+			function createGraph() {
+				var svg = d3.select("svg"),
+				margin = {top: 20, right: 20, bottom: 30, left: 50},
+				width = +svg.attr("width") - margin.left - margin.right,
+				height = +svg.attr("height") - margin.top - margin.bottom,
+				g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+				var parseTime = d3.timeParse("%m/%Y");
+
+				var x = d3.scaleTime()
+					.rangeRound([0, width]);
+
+				var y = d3.scaleLinear()
+					.rangeRound([height, 0]); 
+
+				var line = d3.line()
+					.x(function(d) { return x(d.taken); })
+					.y(function(d) { return y(d.antibody); });
+
+				d3.csv("back-mapping-file.csv", function(d) {
+					return d;
+				}, function(error, data) {
+					console.log(data);
+					if (error) throw error;
+					dataPoints = []
+					data.forEach(function(d) {
+						a = +d.antibody;
+						year1 = d.taken_year;
+						month1 = d.taken_month;
+						date1 = parseTime(month1+"/"+year1);
+						year2 = d.infected_year;
+						month2 = d.infected_month;
+						date2 = parseTime(month2+"/"+year2);
+						dataPoints.push({"antibody":a,"taken":date1,"infected":date2})
+					})
+
+					x.domain(d3.extent(dataPoints, function(d) {  return d.taken; }));
+					y.domain(d3.extent(dataPoints, function(d) { return d.antibody; }));
+
+					g.append("g")
+						.attr("transform", "translate(0," + height + ")")
+						.call(d3.axisBottom(x))
+						.select(".domain")
+						.remove();
+
+					g.append("g")
+						.call(d3.axisLeft(y))
+						.append("text")
+						.attr("fill", "#000")
+						.attr("transform", "rotate(-90)")
+						.attr("y", 6)
+						.attr("dy", "0.71em")
+						.attr("text-anchor", "end")
+						.text("Anitbody");
+
+					g.selectAll("circle.datapoints")
+						.data(dataPoints).enter().append("circle")
+						.attr("fill", "none")
+						.style("stroke", "steelblue")
+						.style("stroke-width", 1.5)
+						.style("stroke-opacity", .7)
+						.attr("cx", function(d) { return x(d.taken)})
+						.attr("cy", function(d) { return y(d.antibody)})
+						.attr("r", "2px");
+				});	
+			}
+		</script>
+	</head>	
+	<body onload="createGraph();">
+		<svg width="2000" height="500"></svg>
+	</body>
+</html>
